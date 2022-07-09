@@ -64,22 +64,27 @@ class ValidateSudoku:
         self.chequeo_3_subcuadros(6,9)
 
     def chequeo_3_subcuadros(self,rango1,rango2):
+        self.lista_invertida.clear()
         for column_index in range(0,9):
             if column_index == 3 or column_index == 6:
                 self.lista_invertida.clear()
             for row_index in range(rango1,rango2):
                 self.lista_invertida.append(self.tablero[row_index][column_index])
-            self.chequeo_filas([self.lista_invertida])
-    
+                if len(self.lista_invertida) == 9:
+                    self.chequeo_filas([self.lista_invertida])
+            
+                
 
                     
 
 
                     
 #instanciar el objeto
-sudoku = ValidateSudoku(board)
-sudoku.chequeo_general()
-sudoku.chequeo_filas()
-sudoku.chequeo_columnas()
-sudoku.chequeo_3_subcuadros()
+if __name__ == "__main__":
+    sudoku = ValidateSudoku(board)
+    sudoku.chequeo_general()
+    sudoku.chequeo_filas()
+    sudoku.chequeo_columnas()
+    sudoku.chequeo_subcuadros()
+    print('El tablero de Sudoku ingresado es válido')
 
